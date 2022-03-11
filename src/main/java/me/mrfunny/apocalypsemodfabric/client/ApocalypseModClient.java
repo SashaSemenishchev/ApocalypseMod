@@ -38,6 +38,10 @@ public class ApocalypseModClient implements ClientModInitializer {
             packetByteBuf.writeString(mods.toString());
             ClientPlayNetworking.send(new Identifier("apocalypse", "auth"), packetByteBuf);
         });
+        ClientPlayConnectionEvents.DISCONNECT.register((event, client) -> {
+            scopeMode = 0;
+            client.options.fov = lastFov;
+        });
         ClientPlayNetworking.registerGlobalReceiver(new Identifier("apocalypse", "play"), (client, handler, buf, responseSender) -> {
             byte[] data = new byte[buf.readableBytes()];
             buf.duplicate().readBytes(data);
