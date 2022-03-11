@@ -6,19 +6,10 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
-import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
-import net.fabricmc.fabric.mixin.client.rendering.MixinInGameHud;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.render.Camera;
-import net.minecraft.item.SpyglassItem;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-
-import java.lang.reflect.Method;
 
 @net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
 public class ApocalypseModClient implements ClientModInitializer {
@@ -29,6 +20,7 @@ public class ApocalypseModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayConnectionEvents.JOIN.register((event, packetSender, client) -> {
+            lastFov = client.options.fov;
             PacketByteBuf packetByteBuf = PacketByteBufs.create();
             StringBuilder mods = new StringBuilder();
             for(ModContainer mod : FabricLoader.getInstance().getAllMods()) {
