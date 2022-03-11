@@ -1,0 +1,2 @@
+v1	named	intermediary
+METHOD	me/mrfunny/apocalypsemodfabric/mixin/MixinInGameHud	(F)V	renderSpyglassOverlay	method_32598

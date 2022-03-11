@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "apomod",
+  "version": "1.0-SNAPSHOT",
+  "name": "ApocalypseMod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/ApocalypseModFabric/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.mrfunny.apocalypsemodfabric.client.ApocalypseModClient"
+    ],
+    "main": [
+      "me.mrfunny.apocalypsemodfabric.ApocalypseMod"
+    ]
+  },
+  "mixins": [
+    "ApocalypseModFabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
